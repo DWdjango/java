@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 
+一个mapper映射文件是以sql语句为单位进行配置，最终将sql语句封装到MappedStatement对象中
+namespace命名空间作用是更好对sql语句进行隔离，方便管理sql
+
+注意：后期讲mybatis的mapper代理开发方式时namespace有特殊的作用？？？
+ -->
+<mapper namespace="cn.yzw.solr.dao.ProductsDao">
+
+<!-- 根据用户id查询一个用户信息 
+select：用于查询，主要配置sql语句、输入参数类型、输出结果类型
+最终该 select 标签 中所配置的内容会封装到MappedStatement对象，可以将该 select称为是一个Statement
+id：唯 一标识 namespace下的一个sql语句，将id称为Statement的id
+
+parameterType：指定输入参数的类型（简单类型、自定义pojo）
+#{}：表示一个占位符号，占位符号可以防止sql注入
+#{value}：value表示接收输入参数的值，如果接收的输入参数是简单类型，#{}里边可以写value或其它的名称
+resultType：将sql查询结果集映射成java对象
+将多个列的值映射到一个对象中，需要定义的pojo，resultType映射规则是sql查询列名和pojo的属性名必须一致方可完成映射
+resultType 指定单条记录所映射的java对象
+
+-->	
+	<!-- 选择/查询用户 -->
+	<select id="findAll" resultType="products">
+		select * from products;
+	</select>
+	
+	<!-- 选择/查询用户 -->
+	<select id="findById" parameterType="java.lang.Integer" resultType="products">
+		select * from products where id = #{id};
+	</select>
+	
+	<!-- update用户 -->
+	<update id="update" parameterType="products">
+		update products set name=#{name},catalog=#{catalog},catalog_name=#{catalog_name},price=#{price},number=#{number},description=#{description},picture=#{picture},Release_time=#{Release_time} where id=#{id};
+	</update>
+	
+	<!-- delete用户 -->
+	<delete id="deleteById" parameterType="java.lang.Integer">
+		delete from products where id = #{id};
+	</delete>
+</mapper>

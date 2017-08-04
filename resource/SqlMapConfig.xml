@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+
+
+	<!-- 批量定义别名 -->
+	<typeAliases>
+		<package name="cn.yzw"/>
+	</typeAliases>
+
+	<!-- 和spring整合后 environments配置将废除 -->
+	<!-- <environments default="development">
+		<environment id="development">
+			使用jdbc事务管理
+			<transactionManager type="JDBC" />
+			数据库连接池
+			<dataSource type="POOLED">
+				<property name="driver" value="com.mysql.jdbc.Driver" />
+				<property name="url"
+					value="jdbc:mysql://localhost:3306/lucene?characterEncoding=utf-8" />
+				<property name="username" value="root" />
+				<property name="password" value="000" />
+			</dataSource>
+		</environment>
+	</environments> -->
+	
+	
+	<!-- 加载mapper.xml -->
+	<!-- <mappers>
+		<package name="dao"/>
+	</mappers> -->
+
+
+</configuration>
